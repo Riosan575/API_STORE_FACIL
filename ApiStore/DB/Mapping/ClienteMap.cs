@@ -1,4 +1,4 @@
-﻿using ApiStore.Models;
+﻿using ApiStore.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

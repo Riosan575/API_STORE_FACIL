@@ -1,5 +1,5 @@
 ﻿using ApiStore.DB.Mapping;
-using ApiStore.Models;
+using ApiStore.Model;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 

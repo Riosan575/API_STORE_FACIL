@@ -1,5 +1,5 @@
 ﻿using ApiStore.DB;
-using ApiStore.Models;
+using ApiStore.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -44,15 +44,37 @@ namespace ApiStore.Controllers
             return cliente;
 
         }
-
-        [HttpPost]
-        [Route("registrar")]
-        public dynamic RegistrarCliente(Cliente cliente)
+        [HttpGet]
+        [Route("ListId")]
+        public async Task<ActionResult<Cliente>> ListarClienteId(int id)
         {
-            string mensaje = string.Empty;
-            int clientes = new ClienteModelo().Registrar(cliente, out mensaje);
+            var cliente = await context.Clientes.FindAsync(id);
 
-            return clientes;
+            return cliente;
+        }
+        [HttpPut]
+        [Route("Actualizar")]
+        public async Task<IActionResult> UpdateCliente(int id, Cliente clie)
+        {
+            var cliente = await context.Clientes.FindAsync(id);
+
+            cliente.Documento = clie.Documento;
+            cliente.NombreCompleto = clie.NombreCompleto;
+            cliente.Correo = clie.Correo;
+            cliente.Telefono = clie.Telefono;
+            cliente.Estado = true;
+
+            try
+            {
+                await context.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                return NotFound(e);
+            }
+            
+
+            return NotFound();
         }
     }
 }
