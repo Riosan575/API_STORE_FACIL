@@ -8,6 +8,7 @@ namespace ApiStore.DB
     public class StoreContext : DbContext
     {
         public virtual DbSet<Cliente> Clientes { get; set; }
+        public virtual DbSet<Usuario> Usuarios { get; set; }
 
         public StoreContext(DbContextOptions<StoreContext> options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -15,6 +16,7 @@ namespace ApiStore.DB
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfiguration(new ClienteMap());
+            modelBuilder.ApplyConfiguration(new UsuarioMap());
         }
     }
 }
