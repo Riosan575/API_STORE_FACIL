@@ -76,5 +76,16 @@ namespace ApiStore.Controllers
 
             return NotFound();
         }
+        [HttpDelete]
+        [Route("Delete")]
+        public async Task<ActionResult<Cliente>> DeleteCliente(int id)
+        {
+            var dCliente = await context.Clientes.FindAsync(id);
+
+            context.Clientes.Remove(dCliente);
+            context.SaveChanges();
+            
+            return dCliente;
+        }
     }
 }
