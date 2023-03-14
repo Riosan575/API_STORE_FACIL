@@ -9,6 +9,8 @@ namespace ApiStore.DB
     {
         public virtual DbSet<Cliente> Clientes { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
+        public virtual DbSet<Producto> Productos { get; set; }
+        public virtual DbSet<Categoria> Categorias { get; set; }
 
         public StoreContext(DbContextOptions<StoreContext> options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -17,6 +19,8 @@ namespace ApiStore.DB
 
             modelBuilder.ApplyConfiguration(new ClienteMap());
             modelBuilder.ApplyConfiguration(new UsuarioMap());
+            modelBuilder.ApplyConfiguration(new ProductoMap());
+            modelBuilder.ApplyConfiguration(new CategoriaMap());
         }
     }
 }
